@@ -11,25 +11,28 @@
 </head>
 
 <body>
+    <div class="container">
+        <h1>Create a New Blog Post</h1>
     <form action="#" th:action="@{/blogpost}" th:object="${blogPost}" method="post">
-        <table>
-            <tr>
-                <td>Title</td>
-                <td><input type="text" th:field="*{title}" /></td>
-            </tr>
-            <tr>
-                <td>Author:</td>
-                <td><input type="text" th:field="*{author}" /></td>
-            </tr>
-            <tr>
-                <td>Blog Entry:</td>
-                <td><input type="text" th:field="*{blogEntry}" /></td>
-            </tr>
-            <tr>
-                <td><button type="submit">Submit Your Post</button></td>
-            </tr>
-        </table>
+        <div class="form-group">
+            
+                Title
+                <input type="text" class ="form-control mb-3" placeholder="Blog Title..." th:field="*{title}" />
+            
+            
+                Author:
+                <input type="text" class ="form-control mb-3" placeholder="Your Name Here..." th:field="*{author}" />
+            
+            
+                Blog Entry:
+                <input type="text" class ="form-control mb-3" placeholder="Blog Entry..." th:field="*{blogEntry}" />
+            
+            
+                <button type="submit" class="btn btn-success">Submit Your Post</button>
+            
+        </div>
     </form>
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
