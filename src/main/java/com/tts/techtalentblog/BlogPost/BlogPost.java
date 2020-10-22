@@ -57,11 +57,16 @@ public class BlogPost {
     public void setBlogEntry(String blogEntry) {
         this.blogEntry = blogEntry;
     }
+    public Long getId() {
+		return id;
+	}
 
     @Override
     public String toString() {
         return "BlogPost [author=" + author + ", blogEntry=" + blogEntry + ", id=" + id + ", title=" + title + "]";
     }
+
+	
     
     
 }
