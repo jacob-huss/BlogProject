@@ -11,18 +11,18 @@ import javax.persistence.Id;
 public class BlogPost {
 
     // fields
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
+
     private String title;
     private String author;
     private String blogEntry;
-    
+
     // empty constructor
-    
-    public BlogPost(){
+
+    public BlogPost() {
 
     }
 
@@ -57,16 +57,18 @@ public class BlogPost {
     public void setBlogEntry(String blogEntry) {
         this.blogEntry = blogEntry;
     }
+
     public Long getId() {
-		return id;
-	}
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     @Override
     public String toString() {
         return "BlogPost [author=" + author + ", blogEntry=" + blogEntry + ", id=" + id + ", title=" + title + "]";
     }
 
-	
-    
-    
 }
