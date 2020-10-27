@@ -40,7 +40,7 @@ public class BlogPostController {
     @PostMapping(value = "/blogpost")
     public String addNewBlogPost(BlogPost blogPost, Model model) {
         blogPostRepository.save(new BlogPost(blogPost.getTitle(), blogPost.getAuthor(), blogPost.getBlogEntry()));
-        posts.add(blogPost);
+        
         model.addAttribute("title", blogPost.getTitle());
         model.addAttribute("author", blogPost.getAuthor());
         model.addAttribute("blogEntry", blogPost.getBlogEntry());
@@ -52,7 +52,7 @@ public class BlogPostController {
     public String deletePostWithId(@PathVariable Long id, BlogPost blogPost, Model model) {
 
         blogPostRepository.deleteById(id);
-        return "redirect:/";
+        return "blogpost/delete";
 
     }
 
@@ -61,6 +61,7 @@ public class BlogPostController {
     public String editPostWithId(@PathVariable Long id, BlogPost blogPost, Model model) {
 
         Optional<BlogPost> post = blogPostRepository.findById(id);
+        
 
         if (post.isPresent()) {
 
