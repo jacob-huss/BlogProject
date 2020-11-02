@@ -1,4 +1,4 @@
-package com.tts.techtalentblog.BlogPost;
+package com.tts.techtalentblog.controller;
 
 import org.springframework.data.repository.CrudRepository;
 

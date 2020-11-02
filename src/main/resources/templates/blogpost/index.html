@@ -30,6 +30,9 @@
                     <h2 class="card-text" th:text="${blog.blogEntry}" />
                     </h2>
 
+                    <h1 class="card-footer" th:text="${blog.tag}" />
+                    </h1>
+
 
                 </div>
 
@@ -43,13 +46,13 @@
 
                     </a>
 
-                    <form action="#" th:action="@{'/blogposts/{id}'(id=${blog.id})}" th:method="delete"
-                    class="form-horizontal">
-                    <div class="form-group">
-                        <input type="hidden" name="_method" value="delete" />
-                        <button type="submit" class="btn btn-danger btn-block" th:text="Delete">Delete Post</button>
-                    </div>
-                </form>
+                    <a href="#" th:href="@{blogposts/delete/{id}(id=${blog.id})}">
+	
+                        <button class="btn btn-danger" type="submit">Delete Post</button>
+                    
+                    </a>
+
+
 
                 </div>
 

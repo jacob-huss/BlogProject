@@ -1,8 +1,11 @@
-package com.tts.techtalentblog.BlogPost;
+package com.tts.techtalentblog.controller;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Scanner;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -39,22 +42,25 @@ public class BlogPostController {
 
     @PostMapping(value = "/blogpost")
     public String addNewBlogPost(BlogPost blogPost, Model model) {
-        blogPostRepository.save(new BlogPost(blogPost.getTitle(), blogPost.getAuthor(), blogPost.getBlogEntry()));
+        blogPostRepository.save(new BlogPost(blogPost.getTitle(), blogPost.getAuthor(), blogPost.getBlogEntry(), blogPost.getTag()));
         
         model.addAttribute("title", blogPost.getTitle());
         model.addAttribute("author", blogPost.getAuthor());
         model.addAttribute("blogEntry", blogPost.getBlogEntry());
+        model.addAttribute("tag", blogPost.getTag());
+
 
         return "blogpost/result";
     }
 
-    @RequestMapping(value = "/blogposts/{id}")
-    public String deletePostWithId(@PathVariable Long id, BlogPost blogPost, Model model) {
+    
 
+    @RequestMapping(value = "blogposts/delete/{id}")
+    public String deletePostById(@PathVariable Long id, BlogPost blogPost) {
         blogPostRepository.deleteById(id);
         return "blogpost/delete";
-
     }
+
 
     @RequestMapping(value = "/blogposts/{id}", method = RequestMethod.GET)
 
@@ -91,6 +97,9 @@ public class BlogPostController {
 
             actualPost.setBlogEntry(blogPost.getBlogEntry());
 
+            actualPost.setTag(blogPost.getTag());
+
+
             blogPostRepository.save(actualPost);
 
             model.addAttribute("blogPost", actualPost);
@@ -100,4 +109,26 @@ public class BlogPostController {
         return "blogpost/result";
 
     }
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Please enter a line of text");
+        String tweet = scanner.nextLine();
+        Set<String> hashtags = getHashtags(tweet);      
+        System.out.println(hashtags.toString());
+    }
+
+    public static Set<String> getHashtags(String blogEntry) {
+        String[] words = blogEntry.split(" ");
+        Set<String> hashtags = new HashSet<String>();
+        for (String word : words) {
+            if (word.startsWith("#")) {
+                hashtags.add(word);
+            }
+        }
+        return hashtags;
+    }
 }
+
+    
+
+    
